@@ -2,6 +2,7 @@ import SwiftUI
 
 
 struct LocationPreviewView: View {
+    // this is a card which will be shown on bottom side of the screen
     @EnvironmentObject private var vm: LocationViewModel
     let location: Location
     
