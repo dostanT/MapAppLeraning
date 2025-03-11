@@ -34,16 +34,30 @@ class LocationViewModel: ObservableObject {
             )
         }
     }
-    public func toggleLocationList(){
+    func toggleLocationList(){
         withAnimation(.easeInOut){
             showListLocations.toggle()
         }
     }
     
-    public func showNextLocation(location: Location){
+    func showNextLocation(location: Location){
         withAnimation(.easeInOut){
             mapLocation = location
             showListLocations = false
         }
+    }
+    
+    func nextLocationButtonPressed(){
+        //Get the current index
+////        let currentIndex = locations.firstIndex { location in
+////            return location == mapLocation
+////        }
+        
+        guard let currentIndex = locations.firstIndex(where: {$0 == mapLocation}) else{
+            print("Could not find current index in location array!. Should never happen.")
+            return
+        }
+        let nextIndex = (currentIndex + 1) % locations.count
+        showNextLocation(location: locations[nextIndex])
     }
 }
